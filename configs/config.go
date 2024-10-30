@@ -19,28 +19,28 @@ type config struct {
 	DB  DBConfigs
 }
 
-var cnf = new(config)
+var cf = new(config)
 
 func init() {
 	viper.SetDefault("api.port", "8000")
-	viper.SetDefault("database.port", "5433")
+	viper.SetDefault("database.port", "5432")
 	viper.SetDefault("database.host", "localhost")
 }
 
 func Load() error {
-	viper.SetConfigName("config")
-	viper.SetConfigType("toml")
-	viper.AddConfigPath(".")
+	viper.SetConfigName("config") //Defino o nome do arquivo
+	viper.SetConfigType("toml")   //Defino o tipo do arquivo
+	viper.AddConfigPath(".")      //Aviso ao Viper que eu quero configurar é este.
 	err := viper.ReadInConfig()
 	if err != nil {
 		if _, ok := err.(viper.ConfigFileNotFoundError); !ok {
 			return err
 		}
 	}
-	cnf.API = APIConfigs{
+	cf.API = APIConfigs{
 		Port: viper.GetString("api.port"),
 	}
-	cnf.DB = DBConfigs{
+	cf.DB = DBConfigs{
 		Port:     viper.GetString("database.port"),
 		Host:     viper.GetString("database.host"),
 		User:     viper.GetString("database.user"),
@@ -51,9 +51,9 @@ func Load() error {
 }
 
 func GetAPIPort() string {
-	return cnf.API.Port
+	return cf.API.Port
 }
 
 func GetDB() DBConfigs {
-	return cnf.DB
+	return cf.DB
 }
