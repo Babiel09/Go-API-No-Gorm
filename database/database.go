@@ -9,7 +9,7 @@ import (
 	_ "github.com/lib/pq"
 )
 
-func DatabaseConnection(*sql.DB, error) {
+func DatabaseConnection() (*sql.DB, error) {
 	dataConf := configs.GetDB()
 	connectionString := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable",
 		dataConf.Host, dataConf.Port, dataConf.User, dataConf.Pass, dataConf.DataBase)
@@ -19,4 +19,5 @@ func DatabaseConnection(*sql.DB, error) {
 		log.Fatal(err)
 	}
 	err = coon.Ping()
+	return coon, err
 }

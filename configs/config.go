@@ -30,7 +30,7 @@ func init() {
 func Load() error {
 	viper.SetConfigName("config") //Defino o nome do arquivo
 	viper.SetConfigType("toml")   //Defino o tipo do arquivo
-	viper.AddConfigPath(".")      //Aviso ao Viper que eu quero configurar é este.
+	viper.AddConfigPath(".")      //Aviso ao Viper que eu quero configurar este arquivo.
 	err := viper.ReadInConfig()
 	if err != nil {
 		if _, ok := err.(viper.ConfigFileNotFoundError); !ok {
