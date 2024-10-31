@@ -2,7 +2,10 @@ module github.com/Babiel09
 
 go 1.23.2
 
-require github.com/spf13/viper v1.19.0
+require (
+	github.com/go-chi/chi v1.5.5
+	github.com/spf13/viper v1.19.0
+)
 
 require (
 	github.com/fsnotify/fsnotify v1.7.0 // indirect
