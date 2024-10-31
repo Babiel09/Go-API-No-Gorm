@@ -10,7 +10,7 @@ func InsertInformation(people People) (id uint, err error) {
 	}
 	defer coon.Close()
 
-	sql := `INSERT INTO pessoas(created-at,nome,sexualidade) VALUES ($1,$2,$3) RETURNING id`
+	sql := `INSERT INTO pessoas(created_at,nome,sexualidade) VALUES ($1,$2,$3) RETURNING id`
 	err = coon.QueryRow(sql, people.Createdat, people.Nome, people.Sexualidade).Scan(&id)
 	return
 }
